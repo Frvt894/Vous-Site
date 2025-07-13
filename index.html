@@ -217,65 +217,161 @@
       background-color: rgba(0, 0, 0, 0.35);
       z-index: -1;
     }
+        #guiImage {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            opacity: 0;
+        }
+
+        @keyframes guiFadeIn {
+            0% {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1.0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes guiFadeOut {
+            0% {
+                transform: translate(-50%, -50%) scale(1.0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0;
+            }
+        }
+        @keyframes floatDown {
+            0% {
+                transform: translate(-50%, calc(-50% - 10px));
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, calc(-50% + 50px)) scale(0.9);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatDown2 {
+            0% {
+                transform: translate(-50%, calc(-50% + 40px));
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, calc(-50% + 60px)) scale(0.9);
+                opacity: 0;
+            }
+        }
   </style>
 
   </head>
   <body>
-    <div class="background-wrapper" id="bgWrapper">
-    <div class="bg-image" style="background-image: url('bg.png');"></div>
-    <div class="bg-image" style="background-image: url('bg2.png');"></div>
-    <div class="bg-image" style="background-image: url('bg3.png');"></div>
-    <div class="bg-image" style="background-image: url('bg4.png');"></div>
-  </div>
+      <div class="background-wrapper" id="bgWrapper">
+          <div class="bg-image" style="background-image: url('bg.png');"></div>
+          <div class="bg-image" style="background-image: url('bg2.png');"></div>
+          <div class="bg-image" style="background-image: url('bg3.png');"></div>
+          <div class="bg-image" style="background-image: url('bg4.png');"></div>
+      </div>
 
-  <div class="black-overlay"></div>
+      <div class="black-overlay"></div>
 
-  <div class="slide-button-left" onclick="slideBackgroundBack()">←</div>
-  <div class="slide-button" onclick="slideBackground()">→</div>
+      <div class="slide-button-left" onclick="slideBackgroundBack()">←</div>
+      <div class="slide-button" onclick="slideBackground()">→</div>
 
-   <div class="gray-rect">
-     <div class="glow-text">V</div>
-     <div class="button-group">
-       <form class="search-box" action="/search" method="get">
-          <input type="text" name="q" placeholder="Search">
-        </form>
-      <button>Home</button>
-      <button>Download</button>
-      <button>Support</button>
-    </div>
-   </div>
-   <div class="fancy-text">Vous</div>
-   <div class="fancy-text-small">The new PvP client.</div>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script>
-        let currentSlide = 0;
-        const totalSlides = 4;
+      <div class="gray-rect">
+          <div class="glow-text">V</div>
+          <div class="button-group">
+              <form class="search-box" action="/search" method="get">
+                  <input type="text" name="q" placeholder="Search">
+              </form>
+              <button>Home</button>
+              <button>Download</button>
+              <button>Support</button>
+          </div>
+      </div>
+      <div class="fancy-text">Vous</div>
+      <div class="fancy-text-small">The new PvP client.</div>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script>
+          let currentSlide = 0;
+          const totalSlides = 4;
 
-        function slideBackground() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlide();
-        }
+          const fancyText = document.querySelector(".fancy-text");
+          const fancyTextSmall = document.querySelector(".fancy-text-small");
 
-        function slideBackgroundBack() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlide();
-        }
+          function slideBackground() {
+              currentSlide = (currentSlide + 1) % totalSlides;
+              updateSlide();
+          }
 
-        function updateSlide() {
-            const bgWrapper = document.getElementById("bgWrapper");
-            bgWrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
+          function slideBackgroundBack() {
+              currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+              updateSlide();
+          }
 
-            const fancyText = document.querySelector(".fancy-text");
-            const fancyTextSmall = document.querySelector(".fancy-text-small");
+          function updateSlide() {
+              const bgWrapper = document.getElementById("bgWrapper");
+              bgWrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
 
-            if (currentSlide === 0) {
-                fancyText.style.display = "block";
-                fancyTextSmall.style.display = "block";
-            } else {
-                fancyText.style.display = "none";
-                fancyTextSmall.style.display = "none";
-            }
-        }
-    </script>
+              if (currentSlide === 0) {
+                  fancyText.style.animation = "floatUp 1s ease-out forwards";
+                  fancyTextSmall.style.animation = "floatUp2 1s ease-out forwards";
+                  fancyText.style.display = "block";
+                  fancyTextSmall.style.display = "block";
+              } else {
+                  fancyText.style.animation = "floatDown 1s ease-in forwards";
+                  fancyTextSmall.style.animation = "floatDown2 1s ease-in forwards";
+                  setTimeout(() => {
+                      fancyText.style.display = "none";
+                      fancyTextSmall.style.display = "none";
+                  }, 1000);
+              }
+          }
+
+          function updateSlide() {
+              const bgWrapper = document.getElementById("bgWrapper");
+              bgWrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
+
+              const fancyText = document.querySelector(".fancy-text");
+              const fancyTextSmall = document.querySelector(".fancy-text-small");
+              const guiImage = document.getElementById("guiImage");
+
+              if (currentSlide === 0) {
+                  fancyText.style.animation = "floatUp 1s ease-out forwards";
+                  fancyTextSmall.style.animation = "floatUp2 1s ease-out forwards";
+                  fancyText.style.display = "block";
+                  fancyTextSmall.style.display = "block";
+              } else {
+                  fancyText.style.animation = "floatDown 1s ease-in forwards";
+                  fancyTextSmall.style.animation = "floatDown2 1s ease-in forwards";
+                  setTimeout(() => {
+                      fancyText.style.display = "none";
+                      fancyTextSmall.style.display = "none";
+                  }, 1000);
+              }
+
+              if (currentSlide === 1) {
+                  guiImage.style.display = "block";
+                  guiImage.style.animation = "guiFadeIn 1s ease-out forwards";
+              } else {
+                  guiImage.style.animation = "guiFadeOut 1s ease-in forwards";
+                  setTimeout(() => {
+                      guiImage.style.display = "none";
+                  }, 1000);
+              }
+          }
+      </script>
+      <img id="guiImage" src="gui.png" alt="GUI" style="display: none;">
   </body>
 </html>
