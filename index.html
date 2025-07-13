@@ -248,23 +248,34 @@
    <div class="fancy-text-small">The new PvP client.</div>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script>
-      let currentSlide = 0;
-      const totalSlides = 4;
+        let currentSlide = 0;
+        const totalSlides = 4;
 
-      function slideBackground() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlide();
-      }
+        function slideBackground() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlide();
+        }
 
-      function slideBackgroundBack() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateSlide();
-      }
+        function slideBackgroundBack() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlide();
+        }
 
-      function updateSlide() {
-        const bgWrapper = document.getElementById("bgWrapper");
-        bgWrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
-      }
+        function updateSlide() {
+            const bgWrapper = document.getElementById("bgWrapper");
+            bgWrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
+
+            const fancyText = document.querySelector(".fancy-text");
+            const fancyTextSmall = document.querySelector(".fancy-text-small");
+
+            if (currentSlide === 0) {
+                fancyText.style.display = "block";
+                fancyTextSmall.style.display = "block";
+            } else {
+                fancyText.style.display = "none";
+                fancyTextSmall.style.display = "none";
+            }
+        }
     </script>
   </body>
 </html>
