@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home | Vous Client</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    img.fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .background-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 400vw;
+      height: 100vh;
+      display: flex;
+      transition: transform 1s ease-in-out;
+      z-index: -2;
+    }
+
+    .bg-image {
+      width: 100vw;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+    .slide-button {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: #151515;
+      border-radius: 50%;
+      color: white;
+      font-size: 30px;
+      line-height: 50px;
+      text-align: center;
+      cursor: pointer;
+      z-index: 10;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .slide-button:hover {
+      background-color: #333;
+    }
+
+    .slide-button-left {
+      position: fixed;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: #151515;
+      border-radius: 50%;
+      color: white;
+      font-size: 30px;
+      line-height: 50px;
+      text-align: center;
+      cursor: pointer;
+      z-index: 10;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .slide-button-left:hover {
+      background-color: #333;
+    }
+
+    .gray-rect {
+      position: fixed;
+      width: 100%;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      background-color: #151515;
+      padding-left: 10px;
+    }
+    .gray-rect img {
+      width: 50px;
+      height: auto;
+    }
+
+    .search-box {
+      display: flex;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .search-box input {
+      padding: 8px 14px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+      border-radius: 0;
+    }
+
+    .button-group {
+          display: flex;
+          gap: 15px;
+          margin-left: auto;
+          margin-right: 20px;
+        }
+
+        .button-group button {
+          padding: 10px 20px;
+          font-size: 16px;
+          cursor: pointer;
+          border: none;
+          background-color: #202020;
+          color: white;
+          border-radius: 20px;
+          transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .button-group button:hover {
+          text-decoration: underline;
+            transform: scale(1.09);
+            background-color: transparent;
+                      background-color: #666;
+        }
+
+    .glow-text {
+      color: white;
+      font-size: 33px;
+      position: relative;
+      padding-left: 8px;
+      padding-right: 50px;
+      top: -4px;
+      text-shadow:
+        0 0 5px white,
+        0 0 10px white,
+        0 0 15px white,
+        0 0 20px white,
+        0 0 25px white,
+        0 0 30px white;
+    }
+
+    .fancy-text {
+      color: white;
+      letter-spacing: 1px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: white;
+      font-size: 50px;
+      text-align: center;
+      animation: floatUp 1s ease-out forwards;
+      text-shadow:
+        0 0 5px white,
+        0 0 10px white,
+        0 0 15px white,
+        0 0 20px white,
+        0 0 25px white,
+        0 0 30px white;
+    }
+
+    .fancy-text-small {
+      color: white;
+      letter-spacing: 1px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: white;
+      font-size: 25px;
+      text-align: center;
+      animation: floatUp2 1s ease-out forwards;
+
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translate(-50%, calc(-50% + 50px)) scale(0.9);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, calc(-50% - 10px));
+        opacity: 1;
+      }
+    }
+
+    @keyframes floatUp2 {
+      0% {
+        transform: translate(-50%, calc(-50% + 60px)) scale(0.9);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, calc(-50% + 40px));
+        opacity: 1;
+      }
+    }
+    .black-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.35);
+      z-index: -1;
+    }
+  </style>
+
+  </head>
+  <body>
+    <div class="background-wrapper" id="bgWrapper">
+    <div class="bg-image" style="background-image: url('bg.png');"></div>
+    <div class="bg-image" style="background-image: url('bg2.png');"></div>
+    <div class="bg-image" style="background-image: url('bg3.png');"></div>
+    <div class="bg-image" style="background-image: url('bg4.png');"></div>
+  </div>
+
+  <div class="black-overlay"></div>
+
+  <div class="slide-button-left" onclick="slideBackgroundBack()">←</div>
+  <div class="slide-button" onclick="slideBackground()">→</div>
+
+   <div class="gray-rect">
+     <div class="glow-text">V</div>
+     <div class="button-group">
+       <form class="search-box" action="/search" method="get">
+          <input type="text" name="q" placeholder="Site Search">
+        </form>
+      <button>Home</button>
+      <button>Download</button>
+      <button>Support</button>
+    </div>
+   </div>
+   <div class="fancy-text">Vous</div>
+   <div class="fancy-text-small">The new PvP client.</div>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+      let currentSlide = 0;
+      const totalSlides = 4;
+
+      function slideBackground() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlide();
+      }
+
+      function slideBackgroundBack() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlide();
+      }
+
+      function updateSlide() {
+        const bgWrapper = document.getElementById("bgWrapper");
+        bgWrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      }
+    </script>
+  </body>
+</html>
