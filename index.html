@@ -314,6 +314,11 @@
       </div>
       <div class="fancy-text">Vous</div>
       <div class="fancy-text-small">The new PvP client.</div>
+
+      <div class="glow-text" id="glowTextTop" style="display: none; position: fixed; top: 15px; left: 50%; transform: translateX(-50%); font-size: 40px;">
+          Solaris
+      </div>
+
       <script type="text/javascript" src="js/materialize.min.js"></script>
       <script>
           let currentSlide = 0;
@@ -359,6 +364,7 @@
               const fancyTextSmall = document.querySelector(".fancy-text-small");
               const guiImage = document.getElementById("guiImage");
               const guiImage3D = document.getElementById("guiImage3D");
+              const glowTextTop = document.getElementById("glowTextTop");
 
               if (currentSlide === 0) {
                   fancyText.style.animation = "floatUp 1s ease-out forwards";
@@ -392,6 +398,20 @@
                   setTimeout(() => {
                       guiImage3D.style.display = "none";
                   }, 1000);
+
+                  if (currentSlide === 1) {
+                      glowTextTop.style.display = "block";
+                      glowTextTop.style.opacity = "0";
+                      glowTextTop.style.transition = "opacity 1s ease";
+                      setTimeout(() => {
+                          glowTextTop.style.opacity = "1";
+                      }, 50);
+                  } else {
+                      glowTextTop.style.opacity = "0";
+                      setTimeout(() => {
+                          glowTextTop.style.display = "none";
+                      }, 1000);
+                  }
               }
           }
       </script>
