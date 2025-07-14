@@ -367,10 +367,10 @@
               const glowTextTop = document.getElementById("glowTextTop");
 
               if (currentSlide === 0) {
-                  fancyText.style.animation = "floatUp 1s ease-out forwards";
-                  fancyTextSmall.style.animation = "floatUp2 1s ease-out forwards";
                   fancyText.style.display = "block";
                   fancyTextSmall.style.display = "block";
+                  fancyText.style.animation = "floatUp 1s ease-out forwards";
+                  fancyTextSmall.style.animation = "floatUp2 1s ease-out forwards";
               } else {
                   fancyText.style.animation = "floatDown 1s ease-in forwards";
                   fancyTextSmall.style.animation = "floatDown2 1s ease-in forwards";
@@ -388,6 +388,13 @@
                   setTimeout(() => {
                       guiImage3D.style.opacity = "1";
                   }, 100);
+
+                  glowTextTop.style.display = "block";
+                  glowTextTop.style.opacity = "0";
+                  glowTextTop.style.transition = "opacity 1s ease";
+                  setTimeout(() => {
+                      glowTextTop.style.opacity = "1";
+                  }, 50);
               } else {
                   guiImage.style.animation = "guiFadeOut 1s ease-in forwards";
                   setTimeout(() => {
@@ -399,19 +406,10 @@
                       guiImage3D.style.display = "none";
                   }, 1000);
 
-                  if (currentSlide === 1) {
-                      glowTextTop.style.display = "block";
-                      glowTextTop.style.opacity = "0";
-                      glowTextTop.style.transition = "opacity 1s ease";
-                      setTimeout(() => {
-                          glowTextTop.style.opacity = "1";
-                      }, 50);
-                  } else {
-                      glowTextTop.style.opacity = "0";
-                      setTimeout(() => {
-                          glowTextTop.style.display = "none";
-                      }, 1000);
-                  }
+                  glowTextTop.style.opacity = "0";
+                  setTimeout(() => {
+                      glowTextTop.style.display = "none";
+                  }, 1000);
               }
           }
       </script>
